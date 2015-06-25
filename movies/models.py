@@ -39,4 +39,4 @@ class Movies(models.Model):
 
     class Meta:
     	db_table = 'movies'
-        ordering = ('name',)  # Default Ordering
+        ordering = ('id',)  # Default Ordering
