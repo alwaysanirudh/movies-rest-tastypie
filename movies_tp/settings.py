@@ -61,7 +61,7 @@ WSGI_APPLICATION = 'movies_tp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DB_DBNAME', 'movies1'),
+        'NAME': os.environ.get('DB_NAME', 'movies1'),
         'USER': os.environ.get('DB_USERNAME', 'root'),
         'PASSWORD': os.environ.get('DB_PASSWORD', 'root'),
         'HOST': os.environ.get('DB_HOST', 'localhost'),
