@@ -2,7 +2,7 @@ from tastypie.resources import ModelResource
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
 from tastypie import fields
 from tastypie.authentication import BasicAuthentication
-from tastypie.authorization import DjangoAuthorization
+from auth import RoleBasedAuthorization
 from models import Movies, Directors, Genres
 
 
@@ -14,6 +14,8 @@ class DirectorsResource(ModelResource):
         excludes = ['id']
         include_resource_uri = False
         filtering = {"name": ALL}
+        authentication = BasicAuthentication()  # Basic Authentication TODO: Custom Authentication
+        authorization = RoleBasedAuthorization()  # Custom superuser based Authorization TODO: Custom Roles based Authorization
 
     # Only return name
     def dehydrate(self, bundle):
@@ -28,6 +30,8 @@ class GenresResource(ModelResource):
         excludes = ['id']
         include_resource_uri = False
         filtering = {"name": ALL}
+        authentication = BasicAuthentication()  # Basic Authentication TODO: Custom Authentication
+        authorization = RoleBasedAuthorization()  # Custom superuser based Authorization TODO: Custom Roles based Authorization
 
     # Only return name
     def dehydrate(self, bundle):
@@ -53,4 +57,4 @@ class MoviesResource(ModelResource):
         	"imdb_score": ['exact', 'range', 'gt', 'gte', 'lt', 'lte']}
         excludes = ['updated_at', 'created_at']	 # Exclude dates from the response
         authentication = BasicAuthentication()  # Basic Authentication TODO: Custom Authentication
-        authorization = DjangoAuthorization()  # Django Authorization TODO: Custom Roles based Authorization
+        authorization = RoleBasedAuthorization()  # Custom superuser based Authorization TODO: Custom Roles based Authorization
