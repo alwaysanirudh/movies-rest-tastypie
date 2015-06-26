@@ -1,9 +1,12 @@
 from django.conf.urls import patterns, include, url
-from movies.api import MoviesResource
+from tastypie.api import Api
+from movies.api import MoviesResource, DirectorsResource, GenresResource
 
-# Load MoviesResource Object
-movies_resource = MoviesResource()
+v1_api = Api(api_name='v1')
+v1_api.register(MoviesResource())
+v1_api.register(DirectorsResource())
+v1_api.register(GenresResource())
 
 urlpatterns = patterns('',
-		url(r'^api/', include(movies_resource.urls)),  # Api Endpoint /api/movies
+		url(r'^api/', include(v1_api.urls)),  # Api Endpoint for movies
 )
